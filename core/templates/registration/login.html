@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Login Page</title>
+    <meta name="description" content="User login page" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      .container {
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+      }
+      #login-form {
+        margin: 30px auto;
+        padding: 30px;
+        background: #fff;
+        border-radius: 5px;
+        width: 50%;
+        box-shadow: 10px 10px 5px #888888;
+      }
+      #login-form button {
+        color: #fff;
+        background: #333;
+        padding: 5px 20px;
+        border: none;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="login-form">
+        <h2>Log In</h2>
+        <form method="post">
+          {% csrf_token %} {{ form }}
+          <button type="submit">Log In</button>
+        </form>
+        <a href="{% url 'accounts:signup' %}"><button type="button">Sign Up</button></a>
+      </div>
+    </div>
+  </body>
+</html>

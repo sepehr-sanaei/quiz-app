@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Access Denied</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+        }
+        .container button {
+            color: #fff;
+            background: #333;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>You can't access this page without being logged in.</h2>
+        <a href="{% url 'accounts:login' %}"><button type="button">Login</button></a>
+    </div>
+</body>
+</html>

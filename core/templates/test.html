@@ -3,40 +3,72 @@
 <head>
     <title>Simple Quiz</title>
     <style>
-        .question-container {
-            display: none;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
         }
-        .question-container.active {
-            display: block;
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        #quiz-container {
+            margin: 30px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 5px;
+            width: 50%;
+            box-shadow: 10px 10px 5px #888888;
+        }
+        #quiz-container button {
+            color: #fff;
+            background: #333;
+            padding: 5px 20px;
+            border: none;
+            border-radius: 5px;
+        }
+        #quiz-container button.delete {
+            background: red;
         }
     </style>
 </head>
 <body>
-   <form id="quiz-form" method="POST" action="{% url 'quiz:submit_quiz' %}" >
-      {% csrf_token %}
-      <div id="quiz-container">
-          {% for q in question %}
-          
-              <h2>Question {{ forloop.counter }}</h2>
-              <p>{{ q.question }}</p>
-              <input type="radio" name="{{ q.id }}" value="{{ q.op1 }}" required> {{ q.op1 }}<br>
-              <input type="radio" name="{{ q.id }}" value="{{ q.op2 }}" required> {{ q.op2 }}<br>
-              <input type="radio" name="{{ q.id }}" value="{{ q.op3 }}" required> {{ q.op3 }}<br>
-              <input type="radio" name="{{ q.id }}" value="{{ q.op4 }}" required> {{ q.op4 }}<br>
-              <a href='{% url 'quiz:edit-test' q.id %}'><button type="button">Edit</button></a>
-              <br>
-              <a href='{% url 'quiz:delete-test' q.id %}'><button style="color: red; margin-right: 20px;" type="button">Delete</button></a>
-          </div>
-          {% endfor %}
-      </div>
-      <br>
-      <button type="submit">Submit</button>
-      <br>
-      <div style="text-align:center;">
-        <h2><a href='{% url 'quiz:create-test' %}'><button type="button"><h2>Create Question</h2></button></a>
+    {% if request.user.is_authenticated %}
+              <ul>
+                <li>Logged in as {{request.user.username}}</li>
+                <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+              </ul>
+              {% else %}
+              <ul>
+                <li><a href="{% url 'accounts:login' %}">login</a></li>
+                <li><a href="{% url 'accounts:signup' %}">signup</a></li>
+              </ul>
+              {% endif %}
+    <div class="container">
+        <form id="quiz-form" method="POST" action="{% url 'quiz:submit_quiz' %}" >
+            {% csrf_token %}
+            <div id="quiz-container">
+                {% for q in question %}
+                    <h2>Question {{ forloop.counter }}</h2>
+                    <p>{{ q.question }}</p>
+                    <input type="radio" name="{{ q.id }}" value="{{ q.op1 }}" required> {{ q.op1 }}<br>
+                    <input type="radio" name="{{ q.id }}" value="{{ q.op2 }}" required> {{ q.op2 }}<br>
+                    <input type="radio" name="{{ q.id }}" value="{{ q.op3 }}" required> {{ q.op3 }}<br>
+                    <input type="radio" name="{{ q.id }}" value="{{ q.op4 }}" required> {{ q.op4 }}<br>
+                    <a href='{% url 'quiz:edit-test' q.id %}'><button type="button">Edit</button></a>
+                    <br>
+                    <a href='{% url 'quiz:delete-test' q.id %}'><button type="button" class="delete">Delete</button></a>
+                {% endfor %}
+            </div>
+            <br>
+            <button type="submit">Submit</button>
+            <br>
+            <div style="text-align:center;">
+                <h2><a href='{% url 'quiz:create-test' %}'><button type="button">Create Question</button></a></h2>
+            </div>
+        </form>
     </div>
-  </form>
-  
-    </script>
 </body>
 </html>
