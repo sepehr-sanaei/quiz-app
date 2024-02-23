@@ -2,24 +2,65 @@
 <html>
 <head>
     <title>Create Quiz Question</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            display: block;
+            width: 100px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <h1>Create Quiz Question</h1>
-    <form method="POST" action="{% url 'quiz:create-test' %}">
-        {% csrf_token %}
-        <label for="question">Question:</label><br>
-        <textarea id="question" name="question" rows="4" cols="50"></textarea><br>
-        <label for="op1">Option 1:</label><br>
-        <input type="text" id="op1" name="op1"><br>
-        <label for="op2">Option 2:</label><br>
-        <input type="text" id="op2" name="op2"><br>
-        <label for="op3">Option 3:</label><br>
-        <input type="text" id="op3" name="op3"><br>
-        <label for="op4">Option 4:</label><br>
-        <input type="text" id="op4" name="op4"><br>
-        <label for="ans">Answer:</label><br>
-        <input type="text" id="ans" name="ans"><br>
-        <input type="submit" value="Submit">
-    </form>
+    <div class="container">
+        <h1>Create Quiz Question</h1>
+        <form method="POST" action="{% url 'quiz:create-test' %}">
+            {% csrf_token %}
+            <label for="question">Question:</label>
+            <textarea id="question" name="question" rows="4"></textarea>
+            <label for="op1">Option 1:</label>
+            <input type="text" id="op1" name="op1">
+            <label for="op2">Option 2:</label>
+            <input type="text" id="op2" name="op2">
+            <label for="op3">Option 3:</label>
+            <input type="text" id="op3" name="op3">
+            <label for="op4">Option 4:</label>
+            <input type="text" id="op4" name="op4">
+            <label for="ans">Answer:</label>
+            <input type="text" id="ans" name="ans">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 </body>
 </html>
+
