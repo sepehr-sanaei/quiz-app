@@ -13,7 +13,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
-class Test(LoginRequiredMixin, ListView):
+class Test(ListView):
     '''
         a simple view to send questions to html template
     '''
@@ -41,7 +41,7 @@ class SubmitQuizView(View):
     
     
 
-class CreateQuestionView(CreateView):
+class CreateQuestionView(LoginRequiredMixin, CreateView):
     model = Quiz
     template_name = 'test-create.html'
     fields = ('question', 'op1', 'op2', 'op3', 'op4', 'ans')
@@ -49,7 +49,7 @@ class CreateQuestionView(CreateView):
     
     success_url = '/'
 
-class UpdateQuestionView(UpdateView):
+class UpdateQuestionView(LoginRequiredMixin, UpdateView):
     model = Quiz
     template_name = 'test-edit.html'
     form_class = QuizForm
@@ -57,7 +57,7 @@ class UpdateQuestionView(UpdateView):
     
     
     
-class DeleteQuestionView(DeleteView):
+class DeleteQuestionView(LoginRequiredMixin, DeleteView):
     model = Quiz
     success_url = '/'
     template_name = 'quiz_delete_confirm.html'

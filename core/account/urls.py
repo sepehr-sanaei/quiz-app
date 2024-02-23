@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.urls import path, include
 from .import views
-from django.contrib.auth.views import LogoutView
-
+from django.contrib.auth.views import LogoutView, PasswordChangeView, PasswordChangeDoneView
+ 
 
 app_name = "accounts"
 
@@ -18,4 +18,6 @@ urlpatterns = [
     # reset password
     # access denied page
     path('access-denied/', views.AccessDeniedView.as_view(), name='access-denied'),
+
+
 ]

@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.views.generic.edit import CreateView
 from .forms import UserRegisterForm
 from django.views.generic import ListView, TemplateView
+from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
 # Create your views here.
 
 
@@ -33,3 +34,9 @@ class MySignUpView(CreateView):
 class AccessDeniedView(TemplateView):
     template_name = 'access_denied.html'
 
+class MyPasswordChangeView(PasswordChangeView):
+    template_name = 'password-change.html'
+    
+class MyPasswordChangeDoneView(PasswordChangeDoneView):
+    pass
+    
